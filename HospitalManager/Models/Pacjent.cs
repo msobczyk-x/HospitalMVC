@@ -3,6 +3,7 @@ using HospitalManager.Validators;
 
 namespace HospitalManager.Models
 {
+    [RegisterValidator]
     public class Pacjent
     {
         [Key]
