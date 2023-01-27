@@ -7,7 +7,10 @@ namespace HospitalManager.Models
     {
         [Key]
         public int OddzialID { get; set; }
+        [Required]
+        [StringLength(255)]
         public string Nazwa { get; set; }
+
         public string Opis { get; set; }
 
     }

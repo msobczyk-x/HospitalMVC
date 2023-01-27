@@ -1,12 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using HospitalManager.Data;
-
-
-
+using HospitalManager.Areas.Identity.Data;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("HospitalManagerContextConnection") ?? throw new InvalidOperationException("Connection string 'HospitalManagerContextConnection' not found.");
+
 builder.Services.AddDbContext<HospitalManagerContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("HospitalManagerContext") ?? throw new InvalidOperationException("Connection string 'HospitalManagerContext' not found.")));
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<HospitalManagerUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<HospitalManagerContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -25,11 +28,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.MapRazorPages();
 app.Run();

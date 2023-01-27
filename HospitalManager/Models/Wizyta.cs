@@ -7,11 +7,11 @@ namespace HospitalManager.Models
     {
         [Key]
         public int WizytaID { get; set; }
-
+        [Required]
         public int DoktorID { get; set; }
         [ForeignKey("DoktorID")] 
         public Doktor? Doktor { get; set; }
-
+        [Required]
         public int PacjentID { get; set; }
         [ForeignKey("PacjentID")] 
         public Pacjent? Pacjent { get; set; }
