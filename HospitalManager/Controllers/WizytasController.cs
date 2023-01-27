@@ -21,9 +21,15 @@ namespace HospitalManager.Controllers
         }
 
         // GET: Wizytas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, bool notUsed)
+
+
         {
+         
+
+            
             var hospitalManagerContext = _context.Wizyta.Include(w => w.Doktor).Include(w => w.Pacjent);
+            
             return View(await hospitalManagerContext.ToListAsync());
         }
 

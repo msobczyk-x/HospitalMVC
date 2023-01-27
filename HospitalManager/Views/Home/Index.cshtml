@@ -13,19 +13,9 @@
 @inject SignInManager<HospitalManagerUser> SignInManager
 @inject UserManager<HospitalManagerUser> UserManager
 
-@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin"))
+@if (SignInManager.IsSignedIn(User))
 {
-	<div class="row gap-5">
-	@Html.CardWithButton("Lista doktorów", "Sprawdź listę doktorów, edytuj, usuń", "Wejdź", "Doktors/Index")
-		@Html.CardWithButton("Lista pacjentów", "Sprawdź listę pacjentów, edytuj, usuń", "Wejdź", "Pacjents/Index")
-		@Html.CardWithButton("Lista wizyt", "Sprawdź listę wizyt, edytuj, usuń", "Wejdź", "Wizytas/Index")
-		@Html.CardWithButton("Lista oddziałów", "Sprawdź listę oddziałów, edytuj, usuń", "Wejdź", "Oddzials/Index")
-	@Html.CardWithCounter("Nadchodzące wizyty","Liczba zapisanych wizyt: ", (int)@ViewBag.IloscWizyt )
-		</div>
-}
-else if (SignInManager.IsSignedIn(User))
-{
-	@Html.CardWithButton("Lista wizyt", "Sprawdź swoją listę wizyt", "Wejdź", "Wizytas/Index")
+	@Html.Partial("_DashboardPartial")
 }
 else
 {

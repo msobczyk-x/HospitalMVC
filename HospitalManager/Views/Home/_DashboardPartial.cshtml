@@ -1,0 +1,22 @@
+﻿@using HospitalManager.Areas.Identity.Data
+@using HospitalManager.Helpers
+@using Microsoft.CodeAnalysis.CSharp.Syntax
+@using Microsoft.CodeAnalysis.VisualBasic.Syntax
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<HospitalManagerUser> SignInManager
+@inject UserManager<HospitalManagerUser> UserManager
+
+@if (await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin"))
+{
+	<div class="row gap-5">
+		@Html.CardWithButton("Lista doktorów", "Sprawdź listę doktorów, edytuj, usuń", "Wejdź", "Doktors/Index")
+		@Html.CardWithButton("Lista pacjentów", "Sprawdź listę pacjentów, edytuj, usuń", "Wejdź", "Pacjents/Index")
+		@Html.CardWithButton("Lista wizyt", "Sprawdź listę wizyt, edytuj, usuń", "Wejdź", "Wizytas/Index")
+		@Html.CardWithButton("Lista oddziałów", "Sprawdź listę oddziałów, edytuj, usuń", "Wejdź", "Oddzials/Index")
+		@Html.CardWithCounter("Nadchodzące wizyty","Liczba zapisanych wizyt: ", (int)@ViewBag.IloscWizyt )
+	</div>
+}
+else 
+{
+	@Html.CardWithButton("Lista wizyt", "Sprawdź swoją listę wizyt", "Wejdź", $"Wizytas/Index")
+}
