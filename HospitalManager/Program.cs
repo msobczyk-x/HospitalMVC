@@ -8,7 +8,8 @@ var connectionString = builder.Configuration.GetConnectionString("HospitalManage
 builder.Services.AddDbContext<HospitalManagerContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<HospitalManagerUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<HospitalManagerUser>(options => options.SignIn.RequireConfirmedAccount = false)
+	.AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<HospitalManagerContext>();
 
 // Add services to the container.

@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HospitalManager.Data;
 using HospitalManager.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalManager.Controllers
 {
-    public class OddzialsController : Controller
+	[Authorize(Roles = "Admin")]
+	public class OddzialsController : Controller
     {
         private readonly HospitalManagerContext _context;
 
