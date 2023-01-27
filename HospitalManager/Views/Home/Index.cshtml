@@ -2,7 +2,44 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+@using HospitalManager.Areas.Identity.Pages.Account
+@using HospitalManager.Helpers
+@using Microsoft.AspNetCore.Identity
+@using HospitalManager.Areas.Identity.Data
+@using Microsoft.CodeAnalysis.CSharp.Syntax
+@using Microsoft.CodeAnalysis.VisualBasic.Syntax
+
+@inject SignInManager<HospitalManagerUser> SignInManager
+@inject UserManager<HospitalManagerUser> UserManager
+
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin"))
+{
+	<div class="row gap-5">
+	@Html.CardWithButton("Lista doktorów", "Sprawdź listę doktorów, edytuj, usuń", "Wejdź", "Doktors/Index")
+		@Html.CardWithButton("Lista pacjentów", "Sprawdź listę pacjentów, edytuj, usuń", "Wejdź", "Pacjents/Index")
+		@Html.CardWithButton("Lista wizyt", "Sprawdź listę wizyt, edytuj, usuń", "Wejdź", "Wizytas/Index")
+		@Html.CardWithButton("Lista oddziałów", "Sprawdź listę oddziałów, edytuj, usuń", "Wejdź", "Oddzials/Index")
+	@Html.CardWithCounter("Nadchodzące wizyty","Liczba zapisanych wizyt: ", (int)@ViewBag.IloscWizyt )
+		</div>
+}
+else if (SignInManager.IsSignedIn(User))
+{
+	@Html.CardWithButton("Lista wizyt", "Sprawdź swoją listę wizyt", "Wejdź", "Wizytas/Index")
+}
+else
+{
+	<div class="text-center">
+		<h1 class="display-4">Witaj w HospitalManagerze</h1>
+		<p>Aby używać aplikacji musisz się zalogować.</p>
+		
+		<div class="container">
+			<form class="form-signin">
+				<a class="btn btn-lg btn-primary btn-block" id="login" asp-area="Identity" asp-page="/Account/Register">Zarejestruj</a>
+				<h3 class="text-center">lub</h3>
+				<a class="btn btn-lg btn-primary btn-block" id="login" asp-area="Identity" asp-page="/Account/Login">Zaloguj</a>
+			</form>
+        
+		</div>
+	</div>
+}

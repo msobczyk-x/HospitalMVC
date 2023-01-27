@@ -22,13 +22,31 @@ namespace HospitalManager.Controllers
         }
 
         // GET: Pacjents
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, bool notUsed)
+
+
         {
-              return View(await _context.Pacjent.ToListAsync());
+
+	        if (_context.Pacjent == null)
+	        {
+		        return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+	        }
+
+	        var pacjenci = from m in _context.Pacjent
+		        select m;
+
+	        if (!String.IsNullOrEmpty(searchString))
+	        {
+		        pacjenci = pacjenci.Where(s => s.Nazwisko!.Contains(searchString));
+	        }
+
+
+			return View(await pacjenci.ToListAsync());
         }
 
-        // GET: Pacjents/Details/5
-        public async Task<IActionResult> Details(int? id)
+
+		// GET: Pacjents/Details/5
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Pacjent == null)
             {

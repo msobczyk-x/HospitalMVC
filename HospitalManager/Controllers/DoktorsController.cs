@@ -24,6 +24,7 @@ namespace HospitalManager.Controllers
         // GET: Doktors
         public async Task<IActionResult> Index()
         {
+      
             var hospitalManagerContext = _context.Doktor.Include(d => d.Oddzial);
             return View(await hospitalManagerContext.ToListAsync());
         }

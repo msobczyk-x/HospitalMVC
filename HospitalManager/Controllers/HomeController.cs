@@ -1,29 +1,36 @@
 ﻿using HospitalManager.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using HospitalManager.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManager.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly HospitalManagerContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(HospitalManagerContext context)
         {
-            _logger = logger;
+	        _context = context;
         }
 
-        public IActionResult Index()
+        // GET: Index
+        public async Task<IActionResult> Index()
         {
-            return View();
+	        var wizyty = _context.Wizyta;
+			var wizytySort = (from z in wizyty
+				where z.Data > DateTime.Now
+				orderby z.Data
+				select z);
+			ViewBag.IloscWizyt = wizytySort.Count();
+			return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
