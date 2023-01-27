@@ -5,6 +5,7 @@ namespace HospitalManager.Models
 {
     public class Wizyta
     {
+        [Key]
         public int WizytaID { get; set; }
 
         public int DoktorID { get; set; }

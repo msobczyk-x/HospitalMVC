@@ -21,5 +21,11 @@ namespace HospitalManager.Data
         public DbSet<HospitalManager.Models.Doktor> Doktor { get; set; }
 
         public DbSet<HospitalManager.Models.Wizyta> Wizyta { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //seed
+        
+        }
     }
 }
