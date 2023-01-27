@@ -34,7 +34,7 @@ namespace HospitalManager.Controllers
             }
 
             var pacjent = await _context.Pacjent
-                .FirstOrDefaultAsync(m => m.PacjetID == id);
+                .FirstOrDefaultAsync(m => m.PacjentID == id);
             if (pacjent == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace HospitalManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PacjetID,Imie,Nazwisko,PESEL,Adres,Telefon")] Pacjent pacjent)
+        public async Task<IActionResult> Create([Bind("PacjentID,Imie,Nazwisko,PESEL,Adres,Telefon")] Pacjent pacjent)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace HospitalManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PacjetID,Imie,Nazwisko,PESEL,Adres,Telefon")] Pacjent pacjent)
+        public async Task<IActionResult> Edit(int id, [Bind("PacjentID,Imie,Nazwisko,PESEL,Adres,Telefon")] Pacjent pacjent)
         {
-            if (id != pacjent.PacjetID)
+            if (id != pacjent.PacjentID)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace HospitalManager.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PacjentExists(pacjent.PacjetID))
+                    if (!PacjentExists(pacjent.PacjentID))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace HospitalManager.Controllers
             }
 
             var pacjent = await _context.Pacjent
-                .FirstOrDefaultAsync(m => m.PacjetID == id);
+                .FirstOrDefaultAsync(m => m.PacjentID == id);
             if (pacjent == null)
             {
                 return NotFound();
@@ -155,7 +155,7 @@ namespace HospitalManager.Controllers
 
         private bool PacjentExists(int id)
         {
-          return _context.Pacjent.Any(e => e.PacjetID == id);
+          return _context.Pacjent.Any(e => e.PacjentID == id);
         }
     }
 }

@@ -50,7 +50,7 @@ namespace HospitalManager.Controllers
         public IActionResult Create()
         {
             ViewData["DoktorID"] = new SelectList(_context.Doktor, "DoktorID", "DoktorID");
-            ViewData["PacjentID"] = new SelectList(_context.Pacjent, "PacjetID", "PacjetID");
+            ViewData["PacjentID"] = new SelectList(_context.Pacjent, "PacjentID", "PacjentID");
             return View();
         }
 
@@ -68,7 +68,7 @@ namespace HospitalManager.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DoktorID"] = new SelectList(_context.Doktor, "DoktorID", "DoktorID", wizyta.DoktorID);
-            ViewData["PacjentID"] = new SelectList(_context.Pacjent, "PacjetID", "PacjetID", wizyta.PacjentID);
+            ViewData["PacjentID"] = new SelectList(_context.Pacjent, "PacjentID", "PacjentID", wizyta.PacjentID);
             return View(wizyta);
         }
 
@@ -86,7 +86,7 @@ namespace HospitalManager.Controllers
                 return NotFound();
             }
             ViewData["DoktorID"] = new SelectList(_context.Doktor, "DoktorID", "DoktorID", wizyta.DoktorID);
-            ViewData["PacjentID"] = new SelectList(_context.Pacjent, "PacjetID", "PacjetID", wizyta.PacjentID);
+            ViewData["PacjentID"] = new SelectList(_context.Pacjent, "PacjentID", "PacjentID", wizyta.PacjentID);
             return View(wizyta);
         }
 
@@ -123,7 +123,7 @@ namespace HospitalManager.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DoktorID"] = new SelectList(_context.Doktor, "DoktorID", "DoktorID", wizyta.DoktorID);
-            ViewData["PacjentID"] = new SelectList(_context.Pacjent, "PacjetID", "PacjetID", wizyta.PacjentID);
+            ViewData["PacjentID"] = new SelectList(_context.Pacjent, "PacjentID", "PacjentID", wizyta.PacjentID);
             return View(wizyta);
         }
 

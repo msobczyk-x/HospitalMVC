@@ -83,11 +83,11 @@ namespace HospitalManager.Migrations
 
             modelBuilder.Entity("HospitalManager.Models.Pacjent", b =>
                 {
-                    b.Property<int>("PacjetID")
+                    b.Property<int>("PacjentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PacjetID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PacjentID"), 1L, 1);
 
                     b.Property<string>("Adres")
                         .IsRequired()
@@ -109,7 +109,7 @@ namespace HospitalManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PacjetID");
+                    b.HasKey("PacjentID");
 
                     b.ToTable("Pacjent");
                 });

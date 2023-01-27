@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManager.Migrations
 {
     [DbContext(typeof(HospitalManagerContext))]
-    [Migration("20230126235203_INIT")]
-    partial class INIT
+    [Migration("20230127000846_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,11 +85,11 @@ namespace HospitalManager.Migrations
 
             modelBuilder.Entity("HospitalManager.Models.Pacjent", b =>
                 {
-                    b.Property<int>("PacjetID")
+                    b.Property<int>("PacjentID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PacjetID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PacjentID"), 1L, 1);
 
                     b.Property<string>("Adres")
                         .IsRequired()
@@ -111,7 +111,7 @@ namespace HospitalManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PacjetID");
+                    b.HasKey("PacjentID");
 
                     b.ToTable("Pacjent");
                 });

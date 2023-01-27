@@ -5,7 +5,7 @@ namespace HospitalManager.Models
     public class Pacjent
     {
         [Key]
-        public int PacjetID { get; set; }
+        public int PacjentID { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
         public string ImieNazwisko => $"{Imie} {Nazwisko}";

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HospitalManager.Migrations
 {
-    public partial class INIT : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +27,7 @@ namespace HospitalManager.Migrations
                 name: "Pacjent",
                 columns: table => new
                 {
-                    PacjetID = table.Column<int>(type: "int", nullable: false)
+                    PacjentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Imie = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nazwisko = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -37,7 +37,7 @@ namespace HospitalManager.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pacjent", x => x.PacjetID);
+                    table.PrimaryKey("PK_Pacjent", x => x.PacjentID);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,7 +88,7 @@ namespace HospitalManager.Migrations
                         name: "FK_Wizyta_Pacjent_PacjentID",
                         column: x => x.PacjentID,
                         principalTable: "Pacjent",
-                        principalColumn: "PacjetID",
+                        principalColumn: "PacjentID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
