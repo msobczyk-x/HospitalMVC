@@ -1,3 +1,22 @@
-﻿@{
-    Layout = "_Layout";
+﻿@using Microsoft.AspNetCore.Identity
+@using HospitalManager.Areas.Identity.Data
+@using Microsoft.CodeAnalysis.CSharp.Syntax
+@using Microsoft.CodeAnalysis.VisualBasic.Syntax
+
+@inject SignInManager<HospitalManagerUser> SignInManager
+@inject UserManager<HospitalManagerUser> UserManager
+
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin"))
+{
+
+
+    Layout = "_LayoutAdmin";
+}
+else if (SignInManager.IsSignedIn(User))
+{
+	Layout = "_LayoutUser";
+}
+else
+{
+	Layout = "_Layout";
 }
